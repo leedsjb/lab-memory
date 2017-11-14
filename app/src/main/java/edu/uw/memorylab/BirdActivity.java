@@ -23,11 +23,23 @@ public class BirdActivity extends AppCompatActivity {
                 startActivity(new Intent(BirdActivity.this, BlankBirdActivity.class));
             }
         });
+    }
+
+    protected void onStart(){
+        super.onStart();
 
         /* Set up image */
         Drawable image = ContextCompat.getDrawable(this, R.drawable.hummingbird); //get the drawable resource
         ImageView birdView = (ImageView)findViewById(R.id.imgBird);
         birdView.setImageDrawable(image);
+    }
+
+    protected void onStop(){
+        super.onStop();
+
+        // remove reference to drawable onStop to free up memory w/ garbage collection
+        ImageView birdView = (ImageView)findViewById(R.id.imgBird);
+        birdView.setImageDrawable(null);
     }
 
 }
